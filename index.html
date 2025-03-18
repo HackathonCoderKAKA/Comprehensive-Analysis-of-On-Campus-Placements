@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGROkaka| Smart Soil Monitoring</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Preloader Animation -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span>AGRO</span>kaka<i class="fas fa-leaf pulse"></i>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="pages/features.html">Features</a>
+            <a href="pages/dashboard.html">Dashboard</a>
+            <a href="pages/data.html">Data Export</a>
+            <a href="pages/contact.html">Contact</a>
+        </div>
+        <div class="theme-toggle">
+            <i class="fas fa-moon"></i>
+        </div>
+        <div class="hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Next-Gen Soil Monitoring</h1>
+            <p>Revolutionizing agriculture with IoT technology and real-time analytics</p>
+            <div class="hero-buttons">
+                <a href="pages/dashboard.html" class="btn primary-btn">View Dashboard</a>
+                <a href="pages/features.html" class="btn secondary-btn">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-image" data-aos="fade-left">
+            <div class="floating-element"></div>
+            <img src="https://images.pexels.com/photos/2203683/pexels-photo-2203683.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Smart Plant Monitoring">
+        </div>
+    </section>
+
+    <!-- Features Preview -->
+    <section class="features-preview">
+        <h2 class="section-title" data-aos="fade-up">Smart Features</h2>
+        <div class="features-container">
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="feature-icon">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <h3>Moisture Tracking</h3>
+                <p>Real-time soil moisture monitoring with precision sensors</p>
+            </div>
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="feature-icon">
+                    <i class="fas fa-temperature-high"></i>
+                </div>
+                <h3>Temperature Analysis</h3>
+                <p>Continuous temperature monitoring for optimal growth conditions</p>
+            </div>
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="feature-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3>Humidity Control</h3>
+                <p>Track ambient humidity to maintain ideal growing environment</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Data Preview -->
+    <section class="live-data">
+        <h2 class="section-title" data-aos="fade-up">Live Sensor Data</h2>
+        <div class="sensor-cards">
+            <div class="sensor-card moisture" data-aos="flip-left">
+                <div class="sensor-icon">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <div class="sensor-info">
+                    <h3>Soil Moisture</h3>
+                    <p id="moisture">--<span>%</span></p>
+                </div>
+                <div class="sensor-gauge">
+                    <div class="gauge-fill" style="width: 45%;"></div>
+                </div>
+            </div>
+            <div class="sensor-card temperature" data-aos="flip-left" data-aos-delay="100">
+                <div class="sensor-icon">
+                    <i class="fas fa-temperature-high"></i>
+                </div>
+                <div class="sensor-info">
+                    <h3>Temperature</h3>
+                    <p id="temperature">37<span>°C</span></p>
+                </div>
+                <div class="sensor-gauge">
+                    <div class="gauge-fill" style="width: 63%;"></div>
+                </div>
+            </div>
+            <div class="sensor-card humidity" data-aos="flip-left" data-aos-delay="200">
+                <div class="sensor-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <div class="sensor-info">
+                    <h3>Humidity</h3>
+                    <p id="humidity">--<span>%</span></p>
+                </div>
+                <div class="sensor-gauge">
+                    <div class="gauge-fill" style="width: 65%;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chart-container" data-aos="fade-up">
+            <canvas id="sensorChart"></canvas>
+        </div>
+        
+        <div class="data-input" data-aos="fade-up">
+            <h3>Update Sensor Values</h3>
+            <div class="input-group">
+                <div class="input-field">
+                    <label for="inputMoisture">Moisture (%)</label>
+                    <input type="number" id="inputMoisture" min="0" max="100" placeholder="0-100">
+                </div>
+                <div class="input-field">
+                    <label for="inputTemperature">Temperature (°C)</label>
+                    <input type="number" id="inputTemperature" min="-20" max="50" placeholder="-20 to 50">
+                </div>
+                <div class="input-field">
+                    <label for="inputHumidity">Humidity (%)</label>
+                    <input type="number" id="inputHumidity" min="0" max="100" placeholder="0-100">
+                </div>
+                <button id="updateBtn" class="btn primary-btn">Update Values</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-toggle">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chatbot-box">
+            <div class="chatbot-header">
+                <h3>AGROkaka Assistant</h3>
+                <div class="chatbot-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="chatbot-messages">
+                <div class="message bot">
+                    <div class="message-content">
+                        Hello! I'm your AGROkaka assistant. How can I help you with your soil monitoring today?
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Type your question here...">
+                <button id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span>AGRO</span>kaka<i class="fas fa-leaf"></i>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Navigation</h4>
+                    <a href="index.html">Home</a>
+                    <a href="pages/features.html">Features</a>
+                    <a href="pages/dashboard.html">Dashboard</a>
+                    <a href="pages/contact.html">Contact</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <a href="pages/data.html">Data Export</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">API</a>
+                    <a href="#">Support</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AGROkaka - Smart Soil Monitoring system. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
